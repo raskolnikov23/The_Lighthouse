@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public bool standing;
     public bool walking;
 
-    float currentVelocity;
+    public float currentVelocity;
     
     public Vector2 rawInputVector;
     public Vector3 jumpDirection;
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             walking = false;
         }
 
-        // determining if player is walking
+        // determine if walking
         if (rawInputVector != Vector2.zero)
         {
             if (grounded && !sprinting)  
@@ -107,8 +107,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
-        // determining if falling
+        // determine if falling
         if (!grounded && !jumping)
         {
             falling = true;
@@ -116,8 +115,7 @@ public class PlayerMovement : MonoBehaviour
             movementVector.y = fallVector;
         }
 
-
-        // ground logic
+        // grounded logic
         if (grounded)
         {
             fallVector = 0;
@@ -132,45 +130,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
+        // while accelerating upwards in jump
         if (jumping)
         {
-            // jump force calculation based on obtained jump target
             //movementVector.y = Mathf.Sqrt(jumpTarget.y - transform.position.y) * jumpPower; // needs rework
             movementVector.y = Mathf.Sqrt(jumpTarget.y - transform.position.y) * jumpPower; // rework in progress
 
-
-
-            // if player has reached the jump target (don't know why < 0.01f)
-            if (jumpTarget.y - transform.position.y < 0.01f)
-            {
-                // turn jump force off
+            // if player has reached the jump target or hit something above
+            if ((jumpTarget.y - transform.position.y < 0.01f) || (charController.collisionFlags == CollisionFlags.Above))
                 jumping = false;
-            }
-
-
-            // detect if hit something while jumping to start falling
-            if (charController.collisionFlags == CollisionFlags.Above)
-            {
-                jumping = false;
-
-                // calculate how much left to jump target, 
-                // convert it to percent. 
-
-                // then manipulate with it with fallRate
-
-                var jumpCalc = jumpTarget.y - transform.position.y;
-                Debug.Log(jumpCalc);
-
-                //fallRate += jumpCalc * 10;
-            }
         }
 
-
-        if (falling && jumpPressed)
-        {
-            coyoteTimer += Time.deltaTime;
-        }
+        // activate coyote timer
+        if (falling && jumpPressed) coyoteTimer += Time.deltaTime;
 
         // questionable
         if (sprinting)
@@ -192,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         grounded = charController.isGrounded;
     }
 
-    // 
+    
     void GetJumpTarget()
     {
         jumpTarget = transform.position + new Vector3(localVelocity.x * 10, jumpHeight, localVelocity.y * 10);
@@ -206,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
             walking = false;
         } 
     }
+
     void OnSprintReleased()
     {
         sprinting = false;
@@ -213,15 +186,16 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJumpPressed()
     {
-        coyoteTimer = 0;
         jumpPressed = true;
-
+        coyoteTimer = 0;
+        
         if (grounded)
         {
             GetJumpTarget();
             jumping = true;
         }
     }
+
     void OnJumpReleased()
     {
         jumpPressed = false;

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// to do: intensify sway while running, time.deltatime
 public class CameraSway : MonoBehaviour
 {
     public Camera cam;
@@ -29,7 +28,7 @@ public class CameraSway : MonoBehaviour
 
     private void Update()
     {
-        if (playerMovement.localVelocity.z > 0.1f && playerMovement.grounded && playerMovement.rawInputVector != Vector2.zero)
+        if (playerMovement.walking)
         {
             moving = true;
             cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, cameraNewPos, ref _ref, swayTime);
@@ -54,6 +53,7 @@ public class CameraSway : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
+            // when timer ends, update bobbing state
             if (timer <= 0)
             {
                 if (nextSwayIsDown)
