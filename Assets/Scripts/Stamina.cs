@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stamina : MonoBehaviour
 {
@@ -17,12 +18,19 @@ public class Stamina : MonoBehaviour
     public float regenTimeout;
     public float regenTimeoutLong = 1.0f;
     public float regenTimeoutShort = 0.5f;
+    public GameObject staminaBar;
+    public Image barFill;
 
 
+    private void Awake()
+    {
+        barFill = staminaBar.GetComponent<Image>();
+    }
 
     private void Start()
     {
         staminaPoints = maxStaminaPoints;
+
     }
 
     public void Update()
@@ -38,6 +46,8 @@ public class Stamina : MonoBehaviour
 
             if (regenTimeout < 0) regenTimeout = 0;
         }
+
+        barFill.fillAmount = (float) staminaPoints / 100;
     }
 
     public void StaminaDrain()
@@ -49,6 +59,7 @@ public class Stamina : MonoBehaviour
             staminaPoints = 0;
             regenTimeout = regenTimeoutLong;
         }
+        
     }
 
     public void StaminaRegen()
