@@ -156,12 +156,14 @@ public class PlayerMovement : MonoBehaviour
                 if (stamina.staminaPoints <= 0)
                 {
                     sprinting = false;
+                    stamina.sprinting = false;
                     break;
                 }
                 else
                 {
                     currentSpeed = Mathf.SmoothDamp(currentSpeed, maxSprintSpeed, ref currentVelocity, movementSpeedTransitionTime);
                     stamina.StaminaDrain();
+                    stamina.sprinting = true;
                 }
             } while (false);
         }
@@ -197,6 +199,7 @@ public class PlayerMovement : MonoBehaviour
     void OnSprintReleased()
     {
         sprinting = false;
+        stamina.sprinting = false;
     }
 
     void OnJumpPressed()

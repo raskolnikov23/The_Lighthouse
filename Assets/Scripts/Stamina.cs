@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class Stamina : MonoBehaviour
 {
-    // stamina points regenerate, while not sprinting, for now
-    // if depleted completely, a small time penalty, only after which stamina starts to regenerate
-    // connected to visual stamina bar
-    // stamina regen timeout - after deplete and after short sprint
     // stamina regen function as coroutine?
 
     public int maxStaminaPoints;
@@ -20,7 +16,7 @@ public class Stamina : MonoBehaviour
     public float regenTimeoutShort = 0.5f;
     public GameObject staminaBar;
     public Image barFill;
-
+    public bool sprinting;
 
     private void Awake()
     {
@@ -30,47 +26,37 @@ public class Stamina : MonoBehaviour
     private void Start()
     {
         staminaPoints = maxStaminaPoints;
-
     }
 
     public void Update()
     {
-        if (staminaPoints < maxStaminaPoints && regenTimeout == 0) // also if not sprinting
+        if (staminaPoints < maxStaminaPoints && regenTimeout == 0 && !sprinting) // also if not sprinting
         {
             StaminaRegen();
         }
 
-        if (regenTimeout > 0)
+        if (regenTimeout > 0 && !sprinting)
         {
             regenTimeout -= Time.deltaTime;
-
             if (regenTimeout < 0) regenTimeout = 0;
         }
 
         barFill.fillAmount = (float) staminaPoints / 100;
     }
 
-    public void StaminaDrain()
+    public void StaminaDrain()  // gets called by PlayerMovement
     {
-        staminaPoints -= drainRate;
+        staminaPoints -= (int) (drainRate * Time.deltaTime); 
+        regenTimeout += drainRate / 100f * Time.deltaTime;
 
         if (staminaPoints < 0) 
         {
             staminaPoints = 0;
-            regenTimeout = regenTimeoutLong;
         }
-        
     }
 
-    public void StaminaRegen()
+    public void StaminaRegen()  
     {
-        staminaPoints += regenRate;
+        staminaPoints += (int) (regenRate * Time.deltaTime);
     }
-
-    // if stamina points < max stamina points
-    // and regentimeout = 0
-    // start regenerating
-
-
-
 }
