@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.ProBuilder;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -49,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTime;
     public bool jumpPressed;
 
+    public Stamina stamina;
+
     
 
     #endregion
@@ -57,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputHandler = GetComponent<InputHandler>();
         charController = GetComponent<CharacterController>();
+        stamina = GetComponent<Stamina>();
 
         Cursor.lockState = CursorLockMode.Locked; // pie kaut kada cita faila japieliek
     }
@@ -147,12 +151,21 @@ public class PlayerMovement : MonoBehaviour
         // questionable
         if (sprinting)
         {
-            currentSpeed = Mathf.SmoothDamp(currentSpeed, maxSprintSpeed, ref currentVelocity, movementSpeedTransitionTime);
+            do      // solution for just jumping past the do, if points are 0. If return, it returns to function call
+            {
+                if (stamina.staminaPoints <= 0)
+                {
+                    sprinting = false;
+                    break;
+                }
+                else
+                {
+                    currentSpeed = Mathf.SmoothDamp(currentSpeed, maxSprintSpeed, ref currentVelocity, movementSpeedTransitionTime);
+                    stamina.StaminaDrain();
+                }
+            } while (false);
         }
-        else
-        {
-            currentSpeed = Mathf.SmoothDamp(currentSpeed, maxMoveSpeed, ref currentVelocity, movementSpeedTransitionTime);
-        }
+        else currentSpeed = Mathf.SmoothDamp(currentSpeed, maxMoveSpeed, ref currentVelocity, movementSpeedTransitionTime);
 
 
         // apply movement
@@ -172,10 +185,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnSprintPressed()
     {
-        if (grounded)
+        if (grounded && stamina.staminaPoints > 0)
         {
             sprinting = true;
             walking = false;
+
+
         } 
     }
 
