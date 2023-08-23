@@ -49,7 +49,7 @@ public class InventoryManager : MonoBehaviour
                 InventoryObject itemToAdd = new InventoryObject(itemInstance);
                 itemArray[i] = itemToAdd;
                 Debug.Log($"{itemToAdd.itemName} was added to inventory");
-                ItemAdd(i);
+                ItemAdd(i); // fires event
                 return;
             }
         }

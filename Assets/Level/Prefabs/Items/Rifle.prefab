@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 5516028275069767503}
   - component: {fileID: 1981681099306529389}
   - component: {fileID: 1638764950933388033}
+  - component: {fileID: 5960009606286500816}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -129,7 +130,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6530429876575278406}
-  - {fileID: 4317260814484433247}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodParticles: {fileID: 0}
+  knockbackStr: 0
 --- !u!114 &1638764950933388033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +185,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc4222ee26af95408f2056cfc0cf97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!137 &5960009606286500816
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268411155571646306}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 498dd9a6a2aa5435ba78c000be24409e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 624270676327525987, guid: 2df921e053da341338c51bec5aecd9d8, type: 3}
+  m_Bones:
+  - {fileID: 7206044261298795337}
+  - {fileID: 5327238438801927115}
+  - {fileID: 271980961083227751}
+  - {fileID: 884189074984234010}
+  - {fileID: 2724539174573062303}
+  - {fileID: 8539829922787432517}
+  - {fileID: 3897607523454377654}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 3897607523454377654}
+  m_AABB:
+    m_Center: {x: 0.00036022544, y: 0.0017132787, z: -0.0011431491}
+    m_Extent: {x: 0.0005000001, y: 0.010619145, z: 0.0020045037}
+  m_DirtyAABB: 0
 --- !u!1 &3546934511560584259
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6530429876575278406}
   m_Layer: 0
-  m_Name: Armature
+  m_Name: Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,98 +439,6 @@ Transform:
   m_Father: {fileID: 6530429876575278406}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6004346939078705769
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4317260814484433247}
-  - component: {fileID: 916283767567680523}
-  m_Layer: 0
-  m_Name: Rifle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4317260814484433247
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6004346939078705769}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2742808779441948120}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &916283767567680523
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6004346939078705769}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 498dd9a6a2aa5435ba78c000be24409e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 624270676327525987, guid: 2df921e053da341338c51bec5aecd9d8, type: 3}
-  m_Bones:
-  - {fileID: 7206044261298795337}
-  - {fileID: 5327238438801927115}
-  - {fileID: 271980961083227751}
-  - {fileID: 884189074984234010}
-  - {fileID: 2724539174573062303}
-  - {fileID: 8539829922787432517}
-  - {fileID: 3897607523454377654}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 3897607523454377654}
-  m_AABB:
-    m_Center: {x: 0.00036022544, y: 0.0017132787, z: -0.0011431491}
-    m_Extent: {x: 0.0005000001, y: 0.010619145, z: 0.0020045037}
-  m_DirtyAABB: 0
 --- !u!1 &6026111179138102451
 GameObject:
   m_ObjectHideFlags: 0

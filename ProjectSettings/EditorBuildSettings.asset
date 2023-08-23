@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lighthouse.unity
+    path: Assets/Level/Scenes/Lighthouse.unity
     guid: 4f426ef71a2c92744a964a81d4be73b5
   m_configObjects: {}

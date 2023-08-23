@@ -19,9 +19,10 @@ public class CameraSway : MonoBehaviour
 
     private void Start()
     {
-        cameraStandardPos = new Vector3(-0.044f, 0.756f, 0.223f);
-        cameraUpperPos = new Vector3(-0.044f, 0.856f, 0.223f);
-        cameraLowerPos = new Vector3(-0.044f, 0.656f, 0.223f);
+        cameraStandardPos = new Vector3(-0.044f, 1f, 0.9f);
+        cameraUpperPos = new Vector3(-0.044f, 1.1f, 0.9f);
+        cameraLowerPos = new Vector3(-0.044f, 0.9f, 0.9f);
+
 
         cameraNewPos = cameraLowerPos;
     }
