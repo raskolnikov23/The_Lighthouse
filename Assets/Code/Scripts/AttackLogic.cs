@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class AttackLogic : MonoBehaviour
 {
     private ItemHandler itemHandler;
     private InputHandler _inputHandler;
     private Raycaster raycaster;
+    public int knockbackStr;
 
     private void Awake()
     {
@@ -33,23 +35,31 @@ public class AttackLogic : MonoBehaviour
     // every weapon has its own reach. every gun has its distance / damage ratio
 
 
+
+
+
+
     private void Attack()
     {
         if (itemHandler.currentlyEquippedItem == null) return;
 
-        if (itemHandler.currentlyEquippedItem.TryGetComponent<WeaponController>(out WeaponController weaponController))
-        {
-            weaponController.Attack(itemHandler.currentlyEquippedItem.GetComponent<ItemInstance>().itemData.itemType, raycaster.lookingOnObject);
+        ItemInstance itemInstance = itemHandler.currentlyEquippedItem.GetComponent<ItemInstance>();
 
-            if (raycaster.lookingOnObject.name == "Enemy")
+        if (raycaster.lookingOnObject.name == "Enemy")
+        {
+            if (raycaster.distanceBetween < 10)
             {
-                if (raycaster.distanceBetween < 10)
-                {
-                    raycaster.lookingOnObject.GetComponent<EnemyHealth>().UpdateHealth(-20);
-                    //raycaster.lookingOnObject.GetComponent<Rigidbody>().AddForce((transform.position +
-                    //raycaster.lookingOnObject.transform.position)*0.01f, ForceMode.Impulse);
-                }
+                raycaster.lookingOnObject.GetComponent<EnemyHealth>().UpdateHealth(-20);
             }
+
+            Vector3 shotDir = (raycaster.lookingOnObject.transform.position - transform.position).normalized;
+            raycaster.lookingOnObject.GetComponent<Rigidbody>().AddForce(shotDir * knockbackStr, ForceMode.VelocityChange);
+
+            Debug.Log("shot dir: " + shotDir);
+            Debug.Log("shotdir x knockbackstr: " + shotDir * knockbackStr);
+            Debug.Log("knockbackstr: " + knockbackStr);
+
+            raycaster.lookingOnObject.GetComponent<ParticlePlayer>().PlayBloodParticles();
         }
     }
     

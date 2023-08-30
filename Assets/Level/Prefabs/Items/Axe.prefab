@@ -206,7 +206,6 @@ GameObject:
   - component: {fileID: 789661486}
   - component: {fileID: 4019044727753901027}
   - component: {fileID: -3306007694659755026}
-  - component: {fileID: -1254808843135283784}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -275,17 +274,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fc4222ee26af95408f2056cfc0cf97c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-1254808843135283784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981542966976094004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8807aa0a912c85a45b54bce88b8a8a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
