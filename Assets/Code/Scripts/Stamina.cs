@@ -8,7 +8,7 @@ public class Stamina : MonoBehaviour
     // stamina regen function as coroutine?
 
     public int maxStaminaPoints;
-    public int staminaPoints;
+    public float staminaPoints;
     public int regenRate;
     public int drainRate;
     public float regenTimeout;
@@ -46,7 +46,7 @@ public class Stamina : MonoBehaviour
 
     public void StaminaDrain()  // gets called by PlayerMovement
     {
-        staminaPoints -= (int) (drainRate * Time.deltaTime); 
+        staminaPoints -= drainRate * Time.deltaTime; 
         regenTimeout += drainRate / 100f * Time.deltaTime;
 
         if (staminaPoints < 0) 
@@ -55,8 +55,8 @@ public class Stamina : MonoBehaviour
         }
     }
 
-    public void StaminaRegen()  
+    public void StaminaRegen()
     {
-        staminaPoints += (int) (regenRate * Time.deltaTime);
+        staminaPoints += (int)(regenRate * Time.deltaTime);
     }
 }

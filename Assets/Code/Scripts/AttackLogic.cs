@@ -10,6 +10,7 @@ public class AttackLogic : MonoBehaviour
     private InputHandler _inputHandler;
     private Raycaster raycaster;
     public int knockbackStr;
+    //public 
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class AttackLogic : MonoBehaviour
     }
 
     // AttackLogic listens to InputHandler mouse1 click event,
-    // executes on the event a method where checks ItemHandler's equipped item,
+    // executes Attack() where it checks ItemHandler's equipped item,
     // then checks in with Raycaster, gets info,
     // then if enemy in front, THROUGH RAYCASTER accesses EnemyHealth... wrong?
     // yes wrong, because raycaster only gives us information, we dont use it as an access tool, i think.
@@ -44,22 +45,24 @@ public class AttackLogic : MonoBehaviour
         if (itemHandler.currentlyEquippedItem == null) return;
 
         ItemInstance itemInstance = itemHandler.currentlyEquippedItem.GetComponent<ItemInstance>();
+        if (itemInstance.itemData.itemType != ItemType.firearm) return;     // for now, only firearms can attack
 
-        if (raycaster.lookingOnObject.name == "Enemy")
+        GameObject target = raycaster.lookingOnObject;
+        if (target.name == "Enemy")
         {
             if (raycaster.distanceBetween < 10)
             {
-                raycaster.lookingOnObject.GetComponent<EnemyHealth>().UpdateHealth(-20);
+                target.GetComponent<EnemyHealth>().UpdateHealth(-20);
             }
 
-            Vector3 shotDir = (raycaster.lookingOnObject.transform.position - transform.position).normalized;
-            raycaster.lookingOnObject.GetComponent<Rigidbody>().AddForce(shotDir * knockbackStr, ForceMode.VelocityChange);
+            Vector3 shotDir = (target.transform.position - transform.position).normalized;
+            target.GetComponent<Rigidbody>().AddForce(shotDir * knockbackStr, ForceMode.VelocityChange);
 
             Debug.Log("shot dir: " + shotDir);
             Debug.Log("shotdir x knockbackstr: " + shotDir * knockbackStr);
             Debug.Log("knockbackstr: " + knockbackStr);
 
-            raycaster.lookingOnObject.GetComponent<ParticlePlayer>().PlayBloodParticles();
+            target.GetComponent<ParticlePlayer>().PlayBloodParticles();
         }
     }
     
