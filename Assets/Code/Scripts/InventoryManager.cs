@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     public int currentSlot = 1;
     public InventoryObject[] itemArray;
     private InputHandler inputHandler;
+    public int maxSlots;
 
     public delegate void IntDelegateVoid(int id);
     
@@ -41,7 +42,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(ItemInstance itemInstance)
     {
-        for (int i = 0; i <= 8; i++)
+        for (int i = 0; i <= maxSlots; i++)
         {
             if (itemArray[i].itemName == null)
             {

@@ -124,7 +124,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 2c55f26de3742384489245eab9dbc547, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2a3482c1a31d2c64bb3c85b95960ef1f, type: 2}
 --- !u!1001 &31875460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 245886266}
   - component: {fileID: 245886270}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3236,6 +3236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSlot: 1
+  maxSlots: 20
 --- !u!114 &1324160148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4659,7 +4660,6 @@ GameObject:
   - component: {fileID: 2090994923}
   - component: {fileID: 2090994916}
   - component: {fileID: 2090994915}
-  - component: {fileID: 2090994922}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -4674,7 +4674,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090994914}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -4696,12 +4696,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090994914}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bb422b3298baa941821aed854e78b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2090994915}
+  player: {fileID: 0}
 --- !u!136 &2090994917
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4795,22 +4796,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
---- !u!54 &2090994922
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090994914}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &2090994923
 MonoBehaviour:
   m_ObjectHideFlags: 0

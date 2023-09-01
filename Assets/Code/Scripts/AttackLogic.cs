@@ -9,8 +9,7 @@ public class AttackLogic : MonoBehaviour
     private ItemHandler itemHandler;
     private InputHandler _inputHandler;
     private Raycaster raycaster;
-    public int knockbackStr;
-    //public 
+    public int shotStr;
 
     private void Awake()
     {
@@ -61,7 +60,8 @@ public class AttackLogic : MonoBehaviour
             }
 
             Vector3 shotDir = (target.transform.position - transform.position).normalized;
-            target.GetComponent<Rigidbody>().AddForce(shotDir * knockbackStr, ForceMode.VelocityChange);
+
+            target.GetComponent<Enemy>().ReceiveHit(shotDir, shotStr);
 
             //Debug.Log("shot dir: " + shotDir);
             //Debug.Log("shotdir x knockbackstr: " + shotDir * knockbackStr);
