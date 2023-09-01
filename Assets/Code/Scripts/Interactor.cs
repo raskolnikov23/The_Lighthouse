@@ -44,6 +44,9 @@ public class Interactor : MonoBehaviour
             if (itemInstance == null) return;
             
             invmanager.AddItem(itemInstance);
+
+            Destroy(interactionObject); // not sure if here is best, maybe some independent service that does this
+                                        // we just let it know that it has happened
             
         }
     }

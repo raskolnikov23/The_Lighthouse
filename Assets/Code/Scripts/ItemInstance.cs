@@ -5,4 +5,6 @@ using UnityEngine;
 public class ItemInstance : MonoBehaviour
 {
     public ItemData itemData;
+
+    public int ammo;
 }

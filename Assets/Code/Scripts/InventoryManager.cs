@@ -28,8 +28,6 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         FillInventory();
-        // StaticCSharpClass.variablis.;
-        
     }
 
     
@@ -40,6 +38,7 @@ public class InventoryManager : MonoBehaviour
             itemArray[i] = new InventoryObject();
         }
     }
+
     public void AddItem(ItemInstance itemInstance)
     {
         for (int i = 0; i <= 8; i++)
@@ -56,6 +55,7 @@ public class InventoryManager : MonoBehaviour
 
         Debug.Log("Inventory full.");
     }
+
     private void OnSlotSwitch(int key)
     {
         // return if slot already active

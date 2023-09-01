@@ -46,6 +46,11 @@ public class AttackLogic : MonoBehaviour
 
         ItemInstance itemInstance = itemHandler.currentlyEquippedItem.GetComponent<ItemInstance>();
         if (itemInstance.itemData.itemType != ItemType.firearm) return;     // for now, only firearms can attack
+        if (itemInstance.ammo == 0) { Debug.Log("No ammo"); return; }       // might need to check if less than zero
+
+
+        itemInstance.ammo -= 1;
+        Debug.Log("Ammo: " + itemInstance.ammo);
 
         GameObject target = raycaster.lookingOnObject;
         if (target.name == "Enemy")
@@ -58,9 +63,10 @@ public class AttackLogic : MonoBehaviour
             Vector3 shotDir = (target.transform.position - transform.position).normalized;
             target.GetComponent<Rigidbody>().AddForce(shotDir * knockbackStr, ForceMode.VelocityChange);
 
-            Debug.Log("shot dir: " + shotDir);
-            Debug.Log("shotdir x knockbackstr: " + shotDir * knockbackStr);
-            Debug.Log("knockbackstr: " + knockbackStr);
+            //Debug.Log("shot dir: " + shotDir);
+            //Debug.Log("shotdir x knockbackstr: " + shotDir * knockbackStr);
+            //Debug.Log("knockbackstr: " + knockbackStr);
+            
 
             target.GetComponent<ParticlePlayer>().PlayBloodParticles();
         }

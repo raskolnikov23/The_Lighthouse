@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Raycaster : MonoBehaviour
 {
-	[SerializeField]
 	public bool showName;
 	public TextMeshProUGUI text;
 	Camera cam;
