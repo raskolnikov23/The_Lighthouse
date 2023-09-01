@@ -52,7 +52,7 @@ public class AttackLogic : MonoBehaviour
         Debug.Log("Ammo: " + itemInstance.ammo);
 
         GameObject target = raycaster.lookingOnObject;
-        if (target.name == "Enemy")
+        if (target.name.StartsWith("Enemy"))
         {
             if (raycaster.distanceBetween < 10)
             {

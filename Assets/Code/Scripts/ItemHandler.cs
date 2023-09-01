@@ -88,6 +88,7 @@ public class ItemHandler : MonoBehaviour
     {
         // create model of added item
         toolbarItems[id] = Instantiate(inventoryManager.itemArray[id].prefab, toolbarItemParent.transform);
+        toolbarItems[id].GetComponent<ItemInstance>().ammo = inventoryManager.itemArray[id].itemInstance.ammo; 
 
         // set model local location and rotation
         toolbarItems[id].transform.localEulerAngles = toolbarItems[id].GetComponent<ItemInstance>().itemData.equipRotation;

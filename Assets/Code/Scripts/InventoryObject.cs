@@ -11,16 +11,19 @@ public class InventoryObject
     public string description;
     public Sprite icon;
     public GameObject prefab;
-
     public int quantity;
 
+    public ItemInstance itemInstance;
 
-    public InventoryObject(ItemInstance itemInstance)
+
+    public InventoryObject(ItemInstance _itemInstance)
     {
-        itemName = itemInstance.itemData.itemName;
-        description = itemInstance.itemData.description;
-        icon = itemInstance.itemData.icon;
-        prefab = itemInstance.itemData.prefab;
+        itemName = _itemInstance.itemData.itemName;
+        description = _itemInstance.itemData.description;
+        icon = _itemInstance.itemData.icon;
+        prefab = _itemInstance.itemData.prefab;
+        itemInstance = _itemInstance;
+        
 
     }
 

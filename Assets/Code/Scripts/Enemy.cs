@@ -23,17 +23,19 @@ public class Enemy : MonoBehaviour
 
         rb.isKinematic = true;
         agent.enabled = true;
+        stunned = false;
+
+        destination = player.position;
     }
 
     private void Update()
     {
-        if (destination != null && !stunned)
+        if (destination != null && stunned == false)
         {
-            agent.SetDestination(destination);
+            agent.SetDestination(player.position);
         }
-        else { } // roam
+        // else roam
         
-        //GetComponent<Rigidbody>().position = agent.transform.position;
     }
 
     public void ReceiveHit(Vector3 hitDir, float hitStr)
