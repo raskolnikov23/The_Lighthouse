@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
 using UnityEngine;
 
@@ -25,6 +24,8 @@ public class Raycaster : MonoBehaviour
 	{
 		RayCaster();
 
+
+        // this stuff to another script
 		if (text != null)
 		{
 			text.text = lookingOn;
@@ -39,35 +40,25 @@ public class Raycaster : MonoBehaviour
                 text.enabled = false;
             }
         }
+	}
 
+    void RayCaster()
+    {
+        RaycastHit hit = new();
 
+        if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        {
+            Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            inFocus = true;
 
-	void RayCaster()
-	{
-		RaycastHit hit = new();
-
-
-		if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
-		{
-			Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-			inFocus = true;
- 
-			lookingOnObject = hit.transform.gameObject;
-			lookingOn = lookingOnObject.name;
-			distanceBetween = hit.distance;
-
+            lookingOnObject = hit.transform.gameObject;
+            lookingOn = lookingOnObject.name;
+            distanceBetween = hit.distance;
         }
-		else
-		{
-			lookingOn = null;
-			inFocus = false;
-		}
-	}
-	
-	
-
-
-
-
-	}
+        else
+        {
+            lookingOn = null;
+            inFocus = false;
+        }
+    }
 }
