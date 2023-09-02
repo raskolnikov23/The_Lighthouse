@@ -46,4 +46,16 @@ public class Enemy : MonoBehaviour
         rb.AddForce(hitDir * hitStr, ForceMode.VelocityChange);
     }
 
+    public void Recover()
+    {
+        agent.enabled = true;
+        stunned = false;
+        rb.isKinematic = true;
+    }
+
+    public void Reorient()
+    {
+        // reorient to stand
+    }
+
 }
