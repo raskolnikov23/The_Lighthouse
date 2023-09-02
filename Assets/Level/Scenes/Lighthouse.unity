@@ -3718,14 +3718,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showName: 1
   text: {fileID: 518763312}
-  lookingOn: 
-  lookingOnObject: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 1
-  distanceBetween: 0
-  inFocus: 0
-  rayData: {fileID: 0}
+  rayData: {fileID: 11400000, guid: 19faeb259f87c1b40afe6c5f19336273, type: 2}
 --- !u!114 &1324160150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3742,6 +3738,7 @@ MonoBehaviour:
   distanceBetween: 0
   interactionObject: {fileID: 0}
   inputData: {fileID: 11400000, guid: 9beb20b7f6f50594f81ce085b3aa84bd, type: 2}
+  rayData: {fileID: 11400000, guid: 19faeb259f87c1b40afe6c5f19336273, type: 2}
   invmanager: {fileID: 1324160147}
 --- !u!114 &1324160153
 MonoBehaviour:
@@ -3778,6 +3775,7 @@ MonoBehaviour:
   shotStr: 30
   ammoUI: {fileID: 362152987}
   inputData: {fileID: 11400000, guid: 9beb20b7f6f50594f81ce085b3aa84bd, type: 2}
+  rayData: {fileID: 11400000, guid: 19faeb259f87c1b40afe6c5f19336273, type: 2}
 --- !u!114 &1324160155
 MonoBehaviour:
   m_ObjectHideFlags: 0

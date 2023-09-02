@@ -13,20 +13,14 @@ public class Interactor : MonoBehaviour
     public float distanceBetween;
     public GameObject interactionObject;
     public InputData inputData;
-    private Raycaster raycaster;
-    
+    public RayData rayData;
     //temp
     public InventoryManager invmanager;
 
-    private void Awake()
-    {
-        raycaster = GetComponent<Raycaster>();
-    }
-
     public void Interact()
     {
-        interactionObject = raycaster.lookingOnObject;
-        distanceBetween = raycaster.distanceBetween;
+        interactionObject = rayData.lookingOnObject;
+        distanceBetween = rayData.distanceBetween;
         
 
         // TO DO: vienkarshot (nevajadzetu chekot parentu)

@@ -10,6 +10,7 @@ public class AttackLogic : MonoBehaviour
     public int shotStr;
     public TextMeshProUGUI ammoUI;
     public InputData inputData;
+    public RayData rayData;
 
     private void Awake()
     {
@@ -45,10 +46,10 @@ public class AttackLogic : MonoBehaviour
         ammoUI.text = itemInstance.ammo.ToString();
         Debug.Log("Ammo: " + itemInstance.ammo);
 
-        GameObject target = raycaster.lookingOnObject;
+        GameObject target = rayData.lookingOnObject;
         if (target.name.StartsWith("Enemy"))
         {
-            if (raycaster.distanceBetween < 10)
+            if (rayData.distanceBetween < 10)
             {
                 target.GetComponent<EnemyHealth>().UpdateHealth(-20);
             }

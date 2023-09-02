@@ -7,14 +7,8 @@ public class Raycaster : MonoBehaviour
 	public bool showName;
 	public TextMeshProUGUI text;
     Camera cam;
-	public string lookingOn;
-	public GameObject lookingOnObject;
 	public LayerMask layerMask;
-	public float distanceBetween;
-	public bool inFocus;
-
-    public ScriptableObject rayData;
-
+    public RayData rayData;
 
 
 	private void Awake()
@@ -30,10 +24,10 @@ public class Raycaster : MonoBehaviour
         // this stuff to another script
 		if (text != null)
 		{
-			text.text = lookingOn;
-			text.text += $"\n Distance: {distanceBetween}";
+			text.text = rayData.lookingOn;
+			text.text += $"\n Distance: {rayData.distanceBetween}";
 
-            if (showName == true && inFocus == true)
+            if (showName == true && rayData.inFocus == true)
             {
                 text.enabled = true;
             }
@@ -52,15 +46,15 @@ public class Raycaster : MonoBehaviour
         {
             Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
 
-            inFocus = true;
-            lookingOnObject = hit.transform.gameObject;
-            lookingOn = lookingOnObject.name;
-            distanceBetween = hit.distance;
+            rayData.inFocus = true;
+            rayData.lookingOnObject = hit.transform.gameObject;
+            rayData.lookingOn = rayData.lookingOnObject.name;
+            rayData.distanceBetween = hit.distance;
         }
         else
         {
-            lookingOn = null;
-            inFocus = false;
+            rayData.lookingOn = null;
+            rayData.inFocus = false;
         }
     }
 }
