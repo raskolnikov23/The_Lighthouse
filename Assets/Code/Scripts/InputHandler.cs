@@ -11,101 +11,29 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-
-    #region Declarations
-
+        public InputData inputData;
         private PlayerInputActions playerInputActions;
-    
-        public Vector2 inputVector { get; private set; }        // raw movement input
-        public Vector2 mouseDelta { get; private set; }         // mouse movements
-
-        public delegate void InputEvent();
-        public delegate void NumEvent(int num);
-
-        public event InputEvent InteractPressed; 
-        public event InputEvent SprintPressed; 
-        public event InputEvent SprintReleased;
-        public event InputEvent JumpPressed; 
-        public event InputEvent JumpReleased;
-        public event InputEvent ItemDropped;
-        public event InputEvent AttackPressed;
-    
-        public event NumEvent NumberPress;
-
-    #endregion
-
 
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
 
-        // Every input action gets bound with a function
-        playerInputActions.Player.Interact.performed += Interact;
-        playerInputActions.Player.Sprint.performed += SprintPress;
-        playerInputActions.Player.Sprint.canceled += SprintRelease;
-        playerInputActions.Player.Jump.performed += JumpPress;
-        playerInputActions.Player.Jump.canceled += JumpRelease;
-        playerInputActions.Player.Toolbar.performed += ToolbarPress;
-        playerInputActions.Player.DropItem.performed += DropItemPress;
-        playerInputActions.Player.Attack.performed += ShootPress;
+        // Every input action gets bound with a function in InputData SO
+        playerInputActions.Player.Interact.performed += inputData.Interact;
+        playerInputActions.Player.Sprint.performed += inputData.SprintPress;
+        playerInputActions.Player.Sprint.canceled += inputData.SprintRelease;
+        playerInputActions.Player.Jump.performed += inputData.JumpPress;
+        playerInputActions.Player.Jump.canceled += inputData.JumpRelease;
+        playerInputActions.Player.Toolbar.performed += inputData.ToolbarPress;
+        playerInputActions.Player.DropItem.performed += inputData.DropItemPress;
+        playerInputActions.Player.Attack.performed += inputData.ShootPress;
     }
 
     private void Update()
     {
-        inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
-        mouseDelta = playerInputActions.Player.Look.ReadValue<Vector2>();
+        inputData.inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
+        inputData.mouseDelta = playerInputActions.Player.Look.ReadValue<Vector2>();
     }
-
-
-    #region event firing functions
-
-        private void Interact(InputAction.CallbackContext context)
-        {
-            InteractPressed();
-        }
-
-        private void SprintPress(InputAction.CallbackContext context)
-        {
-            SprintPressed();
-        }
-
-        private void SprintRelease(InputAction.CallbackContext context)
-        {
-            SprintReleased();
-        }
-
-        private void JumpPress(InputAction.CallbackContext context)
-        {
-            JumpPressed();
-        }
-
-        private void JumpRelease(InputAction.CallbackContext context)
-        {
-            JumpReleased();
-        }
-
-        private void ToolbarPress(InputAction.CallbackContext context)
-        {
-            // pressed number extraction
-            string keycode = context.control.path;
-            char pressedChar = keycode[keycode.Length - 1];
-            int pressedNumber = pressedChar - '0';
-
-            NumberPress(pressedNumber);
-
-        }
-
-        private void DropItemPress(InputAction.CallbackContext context)
-        {
-            ItemDropped();
-        }
-
-        private void ShootPress(InputAction.CallbackContext context)
-        {
-            AttackPressed();
-        }
-
-    #endregion
 
 
     private void OnEnable()

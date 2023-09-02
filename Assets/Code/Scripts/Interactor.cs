@@ -12,8 +12,7 @@ public class Interactor : MonoBehaviour
     public float interactionRange = 5;
     public float distanceBetween;
     public GameObject interactionObject;
-    
-    private InputHandler inputHandler;
+    public InputData inputData;
     private Raycaster raycaster;
     
     //temp
@@ -21,7 +20,6 @@ public class Interactor : MonoBehaviour
 
     private void Awake()
     {
-        inputHandler = GetComponent<InputHandler>();
         raycaster = GetComponent<Raycaster>();
     }
 
@@ -53,10 +51,10 @@ public class Interactor : MonoBehaviour
 
     private void OnEnable()
     {
-        inputHandler.InteractPressed += Interact;
+        inputData.InteractPressed += Interact;
     }
     private void OnDisable()
     {
-        inputHandler.InteractPressed -= Interact;
+        inputData.InteractPressed -= Interact;
     }
 }

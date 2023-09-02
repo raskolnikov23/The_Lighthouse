@@ -9,8 +9,8 @@ public class InventoryManager : MonoBehaviour
     
     public int currentSlot = 1;
     public InventoryObject[] itemArray;
-    private InputHandler inputHandler;
     public int maxSlots;
+    public InputData inputData;
 
     public delegate void IntDelegateVoid(int id);
     
@@ -23,9 +23,9 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        inputHandler = GetComponent<InputHandler>();
         itemArray = new InventoryObject[9];
     }
+
     private void Start()
     {
         FillInventory();
@@ -87,13 +87,13 @@ public class InventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        inputHandler.NumberPress += OnSlotSwitch;
-        inputHandler.ItemDropped += OnToolbarItemDrop;
+        inputData.NumberPress += OnSlotSwitch;
+        inputData.ItemDropped += OnToolbarItemDrop;
     }
     private void OnDisable()
     {
-        inputHandler.NumberPress -= OnSlotSwitch;
-        inputHandler.ItemDropped -= OnToolbarItemDrop;
+        inputData.NumberPress -= OnSlotSwitch;
+        inputData.ItemDropped -= OnToolbarItemDrop;
 
     }
 }

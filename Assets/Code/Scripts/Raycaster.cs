@@ -6,12 +6,14 @@ public class Raycaster : MonoBehaviour
 {
 	public bool showName;
 	public TextMeshProUGUI text;
-	Camera cam;
+    Camera cam;
 	public string lookingOn;
 	public GameObject lookingOnObject;
 	public LayerMask layerMask;
 	public float distanceBetween;
 	public bool inFocus;
+
+    public ScriptableObject rayData;
 
 
 
@@ -49,8 +51,8 @@ public class Raycaster : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            inFocus = true;
 
+            inFocus = true;
             lookingOnObject = hit.transform.gameObject;
             lookingOn = lookingOnObject.name;
             distanceBetween = hit.distance;

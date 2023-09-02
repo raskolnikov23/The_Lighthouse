@@ -1,27 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
+using TMPro;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class AttackLogic : MonoBehaviour
 {
     private ItemHandler itemHandler;
-    private InputHandler _inputHandler;
     private Raycaster raycaster;
     public int shotStr;
+    public TextMeshProUGUI ammoUI;
+    public InputData inputData;
 
     private void Awake()
     {
-        _inputHandler = GetComponent<InputHandler>();
         itemHandler = GetComponent<ItemHandler>();
         raycaster = GetComponent<Raycaster>();
-    }
-
-    private void Start()
-    {
-        
-        
     }
 
     // AttackLogic listens to InputHandler mouse1 click event,
@@ -49,6 +42,7 @@ public class AttackLogic : MonoBehaviour
 
 
         itemInstance.ammo -= 1;
+        ammoUI.text = itemInstance.ammo.ToString();
         Debug.Log("Ammo: " + itemInstance.ammo);
 
         GameObject target = raycaster.lookingOnObject;
@@ -75,11 +69,11 @@ public class AttackLogic : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputHandler.AttackPressed += Attack;
+        inputData.AttackPressed += Attack;
     }
 
     private void OnDisable()
     {
-        _inputHandler.AttackPressed -= Attack;
+        inputData.AttackPressed -= Attack;
     }
 }

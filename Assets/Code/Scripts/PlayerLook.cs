@@ -6,7 +6,7 @@ public class PlayerLook : MonoBehaviour
 {
     #region declarations
 
-    InputHandler inputHandler;
+    public InputData inputData;
     Camera cam;
 
     private Vector2 mouseDelta;
@@ -22,7 +22,6 @@ public class PlayerLook : MonoBehaviour
 
     void Awake()
     {
-        inputHandler = GetComponent<InputHandler>();
         cam = Camera.main;
     }
 
@@ -34,7 +33,7 @@ public class PlayerLook : MonoBehaviour
 
     void ProcessLook()
     {
-        mouseDelta = inputHandler.mouseDelta;
+        mouseDelta = inputData.mouseDelta;
 
         // Here occurs smoothing
         smoothMouse = Vector2.SmoothDamp(smoothMouse, mouseDelta, ref smoothMouseRef, mouseSmoothRate);

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     #region Declarations
 
     CharacterController charController;
-    InputHandler inputHandler;
+    public InputData inputData;
 
 
     public float currentSpeed;
@@ -58,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        inputHandler = GetComponent<InputHandler>();
         charController = GetComponent<CharacterController>();
         stamina = GetComponent<Stamina>();
 
@@ -74,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ProcessMovement()
     {
-        rawInputVector = inputHandler.inputVector;
+        rawInputVector = inputData.inputVector;
         
 
         // a vector that is trying to catch raw input vector
@@ -222,17 +221,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        inputHandler.SprintPressed += OnSprintPressed;
-        inputHandler.SprintReleased += OnSprintReleased;
-        inputHandler.JumpPressed += OnJumpPressed;
-        inputHandler.JumpReleased += OnJumpReleased;
+        inputData.SprintPressed += OnSprintPressed;
+        inputData.SprintReleased += OnSprintReleased;
+        inputData.JumpPressed += OnJumpPressed;
+        inputData.JumpReleased += OnJumpReleased;
     }
     private void OnDisable()
     {
-        inputHandler.SprintPressed -= OnSprintPressed;
-        inputHandler.SprintReleased -= OnSprintReleased;
-        inputHandler.JumpPressed -= OnJumpPressed;
-        inputHandler.JumpReleased -= OnJumpReleased;
+        inputData.SprintPressed -= OnSprintPressed;
+        inputData.SprintReleased -= OnSprintReleased;
+        inputData.JumpPressed -= OnJumpPressed;
+        inputData.JumpReleased -= OnJumpReleased;
     }
 }
 
