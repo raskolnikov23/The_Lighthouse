@@ -39,7 +39,7 @@ public class ItemAnimation : MonoBehaviour
             standardPos = itemHandler.currentlyEquippedItem.GetComponent<ItemInstance>().itemData.equipLocation;
             leftPos = new Vector3(standardPos.x + xOffsetL, standardPos.y + yOffset, standardPos.z);
             rightPos = new Vector3(standardPos.x + xOffsetR, standardPos.y + yOffset, standardPos.z);
-            middlePos = new Vector3(standardPos.x, standardPos.y, standardPos.z);
+            middlePos = new Vector3(standardPos.x, standardPos.y + (-yOffset), standardPos.z);
 
             itemHandler.currentlyEquippedItem.transform.localPosition = Vector3.SmoothDamp(itemHandler.currentlyEquippedItem.transform.localPosition, newPos, ref _ref, swayTime);
 
@@ -55,14 +55,9 @@ public class ItemAnimation : MonoBehaviour
         {
             itemHandler.currentlyEquippedItem.transform.localPosition = Vector3.SmoothDamp(itemHandler.currentlyEquippedItem.transform.localPosition, standardPos, ref _ref, normalizeTime);
         }
-
-        // if standing
-
-
-        //itemHandler.currentlyEquippedItem.transform.localPosition = Vector3.SmoothDamp()
     }
 
-    public void SwitchPos()
+    public void SwitchPos() // essentially a pendulum
     {
         if (swayState == -1 || swayState == 1)
         {
@@ -87,4 +82,6 @@ public class ItemAnimation : MonoBehaviour
 
         timer = timerValue;
     }
+
+    // ItemSwitchTransition()
 }

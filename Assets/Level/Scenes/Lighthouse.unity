@@ -3844,24 +3844,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15493b4c309e6c5488fb7551c73822ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 1093123711}
   itemHandler: {fileID: 1324160153}
   playerMovement: {fileID: 1324160146}
-  swayState: -1
   standardPos: {x: 0, y: 0, z: 0}
   middlePos: {x: 0, y: 0, z: 0}
   leftPos: {x: 0, y: 0, z: 0}
   rightPos: {x: 0, y: 0, z: 0}
   newPos: {x: 0, y: 0, z: 0}
-  xOffsetL: -0.1
-  xOffsetR: 0.1
-  yOffset: 0.1
   _ref: {x: 0, y: 0, z: 0}
+  xOffsetL: -0.01
+  xOffsetR: 0.01
+  yOffset: 0.04
+  normalizeTime: 0.2
   swayTime: 0.5
   timer: 0
   timerValue: 0.25
   direction: 1
-  normalizeTime: 0.2
+  swayState: -1
 --- !u!1001 &1383595744
 PrefabInstance:
   m_ObjectHideFlags: 0
