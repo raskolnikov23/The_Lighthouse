@@ -1,33 +1,27 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ItemSway : MonoBehaviour
+public class ItemAnimation : MonoBehaviour
 {
-
-    public GameObject parent;
     public ItemHandler itemHandler;
     public PlayerMovement playerMovement;
-    public int swayState;
-
+    
     public Vector3 standardPos;
     public Vector3 middlePos;
     public Vector3 leftPos;
     public Vector3 rightPos;
     public Vector3 newPos;
+    public Vector3 _ref;
 
     public float xOffsetL;
     public float xOffsetR;
     public float yOffset;
-
-    public Vector3 _ref;
-
+    public float normalizeTime;
     public float swayTime;
-
     public float timer;
     public float timerValue;
 
     public int direction;
-    public float normalizeTime;
+    public int swayState;
 
     void Update()
     {

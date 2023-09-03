@@ -1,18 +1,9 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-
-
-// This is where input from the player is processed.
-// On input events are fired,
-// And other scripts are notified.
-// Some scripts read input from here every frame,
-// Like PlayerMovement and PlayerLook
-
 
 public class InputHandler : MonoBehaviour
 {
-        public InputData inputData;
-        private PlayerInputActions playerInputActions;
+    public InputData inputData;
+    private PlayerInputActions playerInputActions;
 
     private void Awake()
     {
