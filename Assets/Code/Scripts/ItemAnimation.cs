@@ -17,8 +17,10 @@ public class ItemAnimation : MonoBehaviour
     public float yOffset;
     public float normalizeTime;
     public float swayTime;
+    public float sprintSwayTime;
     public float timer;
-    public float timerValue;
+    public float walkTimerValue;
+    public float sprintTimerValue;
 
     public int direction;
     public int swayState;
@@ -27,16 +29,21 @@ public class ItemAnimation : MonoBehaviour
     {
         if (itemHandler.currentlyEquippedItem != null) 
         {
+            standardPos = itemHandler.currentlyEquippedItem.GetComponent<ItemInstance>().itemData.equipLocation;
+
             Sway();
         }
     }
 
     private void Sway()
     {
-
-        if (playerMovement.walking) 
+        if (playerMovement.standing)
         {
-            standardPos = itemHandler.currentlyEquippedItem.GetComponent<ItemInstance>().itemData.equipLocation;
+            itemHandler.currentlyEquippedItem.transform.localPosition = Vector3.SmoothDamp(itemHandler.currentlyEquippedItem.transform.localPosition, standardPos, ref _ref, normalizeTime);
+        }
+
+        else if (playerMovement.walking) 
+        {
             leftPos = new Vector3(standardPos.x + xOffsetL, standardPos.y + yOffset, standardPos.z);
             rightPos = new Vector3(standardPos.x + xOffsetR, standardPos.y + yOffset, standardPos.z);
             middlePos = new Vector3(standardPos.x, standardPos.y + (-yOffset), standardPos.z);
@@ -49,12 +56,25 @@ public class ItemAnimation : MonoBehaviour
             {
                 SwitchPos();
             }
+        }
 
-        }
-        else if (playerMovement.standing)
+        else if (playerMovement.sprinting)
         {
-            itemHandler.currentlyEquippedItem.transform.localPosition = Vector3.SmoothDamp(itemHandler.currentlyEquippedItem.transform.localPosition, standardPos, ref _ref, normalizeTime);
+            leftPos = new Vector3(standardPos.x + xOffsetL, standardPos.y + yOffset, standardPos.z);
+            rightPos = new Vector3(standardPos.x + xOffsetR, standardPos.y + yOffset, standardPos.z);
+            middlePos = new Vector3(standardPos.x, standardPos.y + (-yOffset), standardPos.z);
+
+            itemHandler.currentlyEquippedItem.transform.localPosition = Vector3.SmoothDamp(itemHandler.currentlyEquippedItem.transform.localPosition, newPos, ref _ref, sprintSwayTime);
+
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                SwitchPos();
+            }
         }
+
+
     }
 
     public void SwitchPos() // essentially a pendulum
@@ -80,7 +100,9 @@ public class ItemAnimation : MonoBehaviour
             }
         }
 
-        timer = timerValue;
+        if (playerMovement.walking) timer = walkTimerValue;
+        else if (playerMovement.sprinting) timer = sprintTimerValue;
+
     }
 
     // ItemSwitchTransition()

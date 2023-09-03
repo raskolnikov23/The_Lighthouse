@@ -3856,9 +3856,11 @@ MonoBehaviour:
   xOffsetR: 0.01
   yOffset: 0.04
   normalizeTime: 0.2
-  swayTime: 0.5
+  swayTime: 0.3
+  sprintSwayTime: 0.25
   timer: 0
-  timerValue: 0.25
+  walkTimerValue: 0.2
+  sprintTimerValue: 0.2
   direction: 1
   swayState: -1
 --- !u!1001 &1383595744
