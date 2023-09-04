@@ -57,6 +57,6 @@ public class Stamina : MonoBehaviour
 
     public void StaminaRegen()
     {
-        staminaPoints += (int)(regenRate * Time.deltaTime);
+        staminaPoints += regenRate * Time.deltaTime;
     }
 }
